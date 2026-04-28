@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
 // ANSI Color Codes for enhanced terminal output
@@ -33,6 +34,9 @@ class SharedResources {
     public static final ReentrantLock waitingTimeLock = new ReentrantLock();  // Lock for total waiting time
     public static final ReentrantLock logLock = new ReentrantLock();  // Lock for execution log
     
+   public static final Semaphore cpuSemaphore = new Semaphore(1);  // Semaphore to limit concurrent process execution
+
+
     public static int contextSwitchCount = 0;      // Shared counter - NEEDS PROTECTION!
     public static int completedProcessCount = 0;   // Shared counter - NEEDS PROTECTION!
     public static long totalWaitingTime = 0;       // Shared accumulator - NEEDS PROTECTION!
