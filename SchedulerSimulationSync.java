@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 
 // ANSI Color Codes for enhanced terminal output
 class Colors {
@@ -27,9 +28,10 @@ class Colors {
 
 // ⚠️ SHARED RESOURCES - These need synchronization! ⚠️
 class SharedResources {
-    // TODO: Students will add synchronization mechanisms here
-    // HINT: Use ReentrantLock for mutual exclusion
-    // HINT: Use Semaphore for limiting concurrent access
+    public static final ReentrantLock contextSwitchLock = new ReentrantLock();  // Lock for protecting shared resources
+    public static final ReentrantLock completedProcessLock = new ReentrantLock();  // Lock for completed process counter
+    public static final ReentrantLock waitingTimeLock = new ReentrantLock();  // Lock for total waiting time
+    public static final ReentrantLock logLock = new ReentrantLock();  // Lock for execution log
     
     public static int contextSwitchCount = 0;      // Shared counter - NEEDS PROTECTION!
     public static int completedProcessCount = 0;   // Shared counter - NEEDS PROTECTION!
@@ -44,8 +46,9 @@ class SharedResources {
     
     // Method to increment context switch counter
     public static void incrementContextSwitch() {
-        // TODO: Protect this critical section with a lock
-        // RACE CONDITION: Multiple threads might read and write simultaneously!
+
+
+       
         contextSwitchCount++;
     }
     
