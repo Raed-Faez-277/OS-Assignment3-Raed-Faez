@@ -294,21 +294,21 @@ https://github.com/Raed-Faez-277/OS-Assignment3-Raed-Faez.git
 **Number of commits**: 
 
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. Set my student ID: 444050283
+2. Method to increment context switch counter using lock
+3. Acquire semaphore before executing.
+4. Update race conditions explanation in documentation.
 
 ---
 
 ## Summary
 
 **Total time spent on assignment**: 
-
+4 hours
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. Synchronization is important to prevent race conditions
+2. Locks and semaphores help to control access to shared resources
+3. Multi-threading requires careful design to avoid errors
 
 **Most challenging aspect**: 
 
