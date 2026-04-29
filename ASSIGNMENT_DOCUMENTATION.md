@@ -188,18 +188,23 @@ The log is protected using a dedicated lock
 ### Critical Section #3: CPU Semaphore
 
 **Purpose of semaphore**: 
-
+To control access to the CPU so that only one process executes at a time.
 **Number of permits and why**: 
-
+1 permit (binary semaphore), to ensure only one process can access the CPU at a time.
 **Where implemented**: 
-
+Inside Process.run() and runToCompletion() methods.
 **Code snippet**:
 ```java
-// Paste your implementation here
-```
+SharedResources.cpuSemaphore.acquire();
+
+try {
+    // process execution
+} finally {
+    SharedResources.cpuSemaphore.release();
+}
 
 **Effect on program behavior**: 
-
+Ensures that only one thread executes in the CPU at a time.
 ---
 
 ## Part 4: Testing and Verification (2 marks)
