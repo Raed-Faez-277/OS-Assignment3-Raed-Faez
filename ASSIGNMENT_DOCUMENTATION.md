@@ -124,7 +124,7 @@ Lock is used for mutual exclusion to protect shared resources like counters and 
 
 **Your Answer**:
 
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+Deadlock occurs when two or more threads are waiting for each other to release resources, causing the program to stop. One prevention technique is using try-finally blocks to ensure locks are always released. Another technique is avoiding nested locks. In my code, I used try-finally blocks to release locks and avoided multiple locks in the same section, preventing deadlocks.
 
 ---
 
