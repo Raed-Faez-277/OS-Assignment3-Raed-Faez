@@ -113,7 +113,11 @@ class Process implements Runnable {
     
     @Override
     public void run() {
-        // TODO #3: Acquire CPU semaphore before executing
+        
+
+        try {
+            SharedResources.cpuSemaphore.acquire();
+        
         // This ensures only allowed number of processes run simultaneously
         
         try {
@@ -176,9 +180,14 @@ class Process implements Runnable {
             System.out.println();
             
         } finally {
-            // TODO #4: Release CPU semaphore here
-            // Always release in finally block to prevent deadlocks!
+            SharedResources.cpuSemaphore.release();
+
+           // Always release in finally block to prevent deadlocks!
         }
+    }
+        catch(InterruptedException e) {
+            System.out.println(Colors.RED + "  ✗ " + name + " was interrupted while waiting for CPU." + Colors.RESET); 
+           } 
     }
     
     private String createProgressBar(int progress, int width) {
