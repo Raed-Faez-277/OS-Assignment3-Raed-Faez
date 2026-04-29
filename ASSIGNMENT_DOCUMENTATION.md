@@ -70,17 +70,17 @@ Executed program  multiple times to make sure only one runs in CPU.
 1 hour
 ---
 
-### Entry 4 - [Date, Time]
+### Entry 4 - [29 April, 2026 , 2:00 PM]
 **What I implemented**: 
-
+completing the Assignment Documentation file by answering the technical questions related to synchronization, race conditions, locks, semaphores, and design decisions.
 **Challenges encountered**: 
-
+I had some difficulty understanding the difference between ReentrantLock and Semaphore and how to explain lock
 **How I solved it**: 
-
+Reviewed my implementation in the code and matched each concept with its practical usage in the scheduler
 **Testing approach**: 
-
+checked answers with the actual code behavior to ensure explanations matched implementation
 **Time spent**: 
-
+1.5 hour
 ---
 
 ### Entry 5 - [Date, Time]
@@ -292,7 +292,7 @@ Synchronization is like organizing people who want to use the same resource. Ima
 **Repository URL**: 
 https://github.com/Raed-Faez-277/OS-Assignment3-Raed-Faez.git
 **Number of commits**: 
-
+4
 **Commit messages**: 
 1. Set my student ID: 444050283
 2. Method to increment context switch counter using lock
