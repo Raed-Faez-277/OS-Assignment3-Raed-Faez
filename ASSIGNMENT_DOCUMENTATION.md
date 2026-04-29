@@ -231,11 +231,11 @@ Synchronization ensured data consistency and correct execution results across mu
 **What I tested**: Checking for ConcurrentModificationException
 
 **Testing procedure**: 
-
+Ran the program multiple times while processes were executing concurrently.
 **Results**: 
-
+No ConcurrentModificationException occurred.
 **What this proves**: 
-
+The execution log is properly synchronized.
 ---
 
 ### Test 3: Correctness Verification
