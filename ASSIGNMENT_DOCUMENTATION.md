@@ -44,17 +44,17 @@ Ran the original code
 45 minutes
 ---
 
-### Entry 2 - [Date, Time]
+### Entry 2 - [28 April, 2026 , 10;35PM]
 **What I implemented**: 
-
+Added  static final ReentrantLock for shared counters (context switches, completed processes, waiting time).
 **Challenges encountered**: 
-
+Confusion about where race conditions occur.
 **How I solved it**: 
-
+Used YouTube and codes in slides to understand.
 **Testing approach**: 
-
+Ran program multiple times and checked the output.
 **Time spent**: 
-
+1 hour
 ---
 
 ### Entry 3 - [Date, Time]
