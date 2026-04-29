@@ -242,11 +242,13 @@ The execution log is properly synchronized.
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
 
 **Expected values**: 
-
+1. Context switches should match number of process executions.
+2. Completed processes should equal total number of processes.
+3. Waiting time should be non-negative and consistent.
 **Actual values**: 
-
+Values were consistent with expected behavior and matched program execution results
 **Analysis**: 
-
+Synchronization ensured atomic updates to shared counters, preventing incorrect increments.
 ---
 
 ### Test 4: Different Scenarios
