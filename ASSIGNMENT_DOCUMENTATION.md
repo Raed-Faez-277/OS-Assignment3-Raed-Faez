@@ -311,9 +311,9 @@ https://github.com/Raed-Faez-277/OS-Assignment3-Raed-Faez.git
 3. Multi-threading requires careful design to avoid errors
 
 **Most challenging aspect**: 
-
+Understanding where to place locks correctly in synchronization.
 **What I'm most proud of**: 
-
+coding synchronization without errors.
 ---
 
 **End of Documentation**
