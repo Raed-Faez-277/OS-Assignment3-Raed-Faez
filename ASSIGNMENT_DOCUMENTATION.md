@@ -255,11 +255,12 @@ Synchronization ensured atomic updates to shared counters, preventing incorrect 
 **Scenario tested**: [e.g., different time quantum, more processes, etc.]
 
 **Purpose**: 
-
-**Results**: 
+To verify that the scheduler works correctly.
+**Results**:
+correct scheduling behavior and stable output across all scenarios.
 
 **What I learned**: 
-
+The synchronization works correctly in different situations and keeps the program safe when multiple threads run at the same time.
 ---
 
 ## Part 5: Reflection and Learning
