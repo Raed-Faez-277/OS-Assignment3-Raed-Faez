@@ -137,7 +137,7 @@ Deadlock occurs when two or more threads are waiting for each other to release r
 
 **Your Answer**:
 
-[Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
+I used fine-grained locking by separating locks for different shared counters. Such as waiting time and process count, is protected by its own lock. This approach improves concurrency because multiple threads can update different counters at the same time without blocking each other. The trade-off is that it increases code complexity compared to using a single lock. However, since the counters are independent, fine-grained locking provides better performance and efficiency in a multi-threaded environment.
 
 ---
 
