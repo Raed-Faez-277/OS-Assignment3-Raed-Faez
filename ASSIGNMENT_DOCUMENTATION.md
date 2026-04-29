@@ -106,7 +106,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - 4-6 sentences with code examples]
+There are two race conditions. The first one occurs in contextSwitchCount. Some threads could update the value at the same time. The second one may occur in executionLog ArrayList, multiple threads can change it concurrently, which lead to incorrect results. Concurrent access is a problem because incrementing isn't atomic. And we solved it by using locks.
 
 ---
 
