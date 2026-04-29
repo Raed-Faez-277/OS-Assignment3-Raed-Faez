@@ -44,7 +44,7 @@ Ran the original code
 45 minutes
 ---
 
-### Entry 2 - [28 April, 2026 , 10;35PM]
+### Entry 2 - [28 April, 2026 , 10;35 PM]
 **What I implemented**: 
 Added  static final ReentrantLock for shared counters (context switches, completed processes, waiting time).
 **Challenges encountered**: 
@@ -57,17 +57,17 @@ Ran program multiple times and checked the output.
 1 hour
 ---
 
-### Entry 3 - [Date, Time]
+### Entry 3 - [28 April, 2026 , 11;00 PM]
 **What I implemented**: 
-
+Implemented Semaphore to control CPU access with 1 permit
 **Challenges encountered**: 
-
+Ensuring correct placement of acquire() and release() to avoid deadlocks.
 **How I solved it**: 
-
+Used try-finally blocks to make sure semaphore release even if interruption occurs.
 **Testing approach**: 
-
+Executed program  multiple times to make sure only one runs in CPU.
 **Time spent**: 
-
+1 hour
 ---
 
 ### Entry 4 - [Date, Time]
