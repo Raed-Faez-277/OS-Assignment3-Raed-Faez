@@ -106,7 +106,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - 4-6 sentences with code examples]
+There are two race conditions. The first one occurs in contextSwitchCount. Some threads could update the value at the same time. The second one may occur in executionLog ArrayList, multiple threads can change it concurrently, which lead to incorrect results. Concurrent access is a problem because incrementing isn't atomic. And we solved it by using locks.
 
 ---
 
@@ -115,7 +115,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - explain your implementation choices]
+Lock is used for mutual exclusion to protect shared resources like counters and logs. It ensures only one thread can access a critical section at a time. Semaphore controls access based on permits. I used ReentrantLock for protecting shared variables and Semaphore to control CPU access.
 
 ---
 
@@ -124,7 +124,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+Deadlock occurs when two or more threads are waiting for each other to release resources, causing the program to stop. One prevention technique is using try-finally blocks to ensure locks are always released. Another technique is avoiding nested locks. In my code, I used try-finally blocks to release locks and avoided multiple locks in the same section, preventing deadlocks.
 
 ---
 
@@ -137,7 +137,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
+I used fine-grained locking by separating locks for different shared counters. Such as waiting time and process count, is protected by its own lock. This approach improves concurrency because multiple threads can update different counters at the same time without blocking each other. The trade-off is that it increases code complexity compared to using a single lock. However, since the counters are independent, fine-grained locking provides better performance and efficiency in a multi-threaded environment.
 
 ---
 
@@ -146,52 +146,65 @@ Document your development process with **minimum 3 entries** showing progression
 ### Critical Section #1: Counter Variables
 
 **Which variables**: 
-
+contextSwitchCount
+completedProcessCount
+totalWaitingTime
 **Why they need protection**: 
-
+Without synchronization, concurrent updates can cause race conditions
 **Synchronization mechanism used**: 
-
+ReentrantLock (multiple locks - fine-grained locking)
 **Code snippet**:
-```java
-// Paste your implementation here
-```
-
-**Justification**: 
-
+contextSwitchLock.lock();
+try {
+    contextSwitchCount++;
+} finally {
+    contextSwitchLock.unlock();
+}
+**Justification**:
+Each counter is protected using its own lock to ensure thread-safe updates. This prevents race conditions.
 ---
 
 ### Critical Section #2: Execution Log
 
 **What resource**: 
-
+executionLog (ArrayList)
 **Why it needs protection**: 
-
+it could cause race conditions.
 **Synchronization mechanism used**: 
-
+ReentrantLock (logLock)
 **Code snippet**:
 ```java
-// Paste your implementation here
-```
+logLock.lock();
+try {
+    executionLog.add(message);
+} finally {
+    logLock.unlock();
+}
 
 **Justification**: 
-
+The log is protected using a dedicated lock
 ---
 
 ### Critical Section #3: CPU Semaphore
 
 **Purpose of semaphore**: 
-
+To control access to the CPU so that only one process executes at a time.
 **Number of permits and why**: 
-
+1 permit (binary semaphore), to ensure only one process can access the CPU at a time.
 **Where implemented**: 
-
+Inside Process.run() and runToCompletion() methods.
 **Code snippet**:
 ```java
-// Paste your implementation here
-```
+SharedResources.cpuSemaphore.acquire();
+
+try {
+    // process execution
+} finally {
+    SharedResources.cpuSemaphore.release();
+}
 
 **Effect on program behavior**: 
-
+Ensures that only one thread executes in the CPU at a time.
 ---
 
 ## Part 4: Testing and Verification (2 marks)
@@ -200,58 +213,61 @@ Document your development process with **minimum 3 entries** showing progression
 **What I tested**: Running program multiple times to verify consistent results
 
 **Testing procedure**: 
-```bash
-# Commands used (run the program at least 5 times)
+Executed the program at least 5 times with the same student ID and compared outputs such as context switches, completed processes, and waiting time.
 ```
 
 **Results**: 
-(Show that running multiple times produces consistent, correct results)
+The results were consistent across multiple runs.
 
 **Why synchronization is necessary**: 
-(Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+Without synchronization, race conditions could occur in shared resources such as contextSwitchCount, completedProcessCount, totalWaitingTime, and executionLog. 
+This could lead to incorrect output.
 
 **Conclusion**: 
-
+Synchronization ensured data consistency and correct execution results across multiple runs.
 ---
 
 ### Test 2: Exception Testing
 **What I tested**: Checking for ConcurrentModificationException
 
 **Testing procedure**: 
-
+Ran the program multiple times while processes were executing concurrently.
 **Results**: 
-
+No ConcurrentModificationException occurred.
 **What this proves**: 
-
+The execution log is properly synchronized.
 ---
 
 ### Test 3: Correctness Verification
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
 
 **Expected values**: 
-
+1. Context switches should match number of process executions.
+2. Completed processes should equal total number of processes.
+3. Waiting time should be non-negative and consistent.
 **Actual values**: 
-
+Values were consistent with expected behavior and matched program execution results
 **Analysis**: 
-
+Synchronization ensured atomic updates to shared counters, preventing incorrect increments.
 ---
 
 ### Test 4: Different Scenarios
 **Scenario tested**: [e.g., different time quantum, more processes, etc.]
 
 **Purpose**: 
-
-**Results**: 
+To verify that the scheduler works correctly.
+**Results**:
+correct scheduling behavior and stable output across all scenarios.
 
 **What I learned**: 
-
+The synchronization works correctly in different situations and keeps the program safe when multiple threads run at the same time.
 ---
 
 ## Part 5: Reflection and Learning
 
 ### What I learned about synchronization:
 
-[6-8 sentences about key concepts, challenges, insights]
+I learned that synchronization is important when multiple threads share the same data. Without synchronization, race conditions can occur and cause incorrect results. I understood how locks like ReentrantLock protect critical sections by allowing only one thread at a time. I also learned how semaphores control access to limited resources like CPU. One challenge I faced was understanding where to place locks correctly. I also learned that using too many locks can make the code more complex.
 
 ---
 
@@ -260,44 +276,44 @@ Document your development process with **minimum 3 entries** showing progression
 Give TWO examples where synchronization is critical:
 
 **Example 1**: 
-
+Bank systems, where multiple users access and update the same account balance at the same time.
 **Example 2**: 
-
+Online booking systems (like flight or hotel reservations), where multiple users try to book the same seat or room at the same time.
 ---
 
 ### How I would explain synchronization to others:
 
-[Explain to someone who just finished Assignment 1 - use simple terms and analogies]
+Synchronization is like organizing people who want to use the same resource. Imagine many people trying to use one bathroom. Without rules, it will be messy and unfair. Synchronization acts like a lock on the door, allowing only one person at a time. This prevents problems and keeps everything working correctly.
 
 ---
 
 ## Part 6: GitHub Repository Information
 
 **Repository URL**: 
-
+https://github.com/Raed-Faez-277/OS-Assignment3-Raed-Faez.git
 **Number of commits**: 
 
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. Set my student ID: 444050283
+2. Method to increment context switch counter using lock
+3. Acquire semaphore before executing.
+4. Update race conditions explanation in documentation.
 
 ---
 
 ## Summary
 
 **Total time spent on assignment**: 
-
+4 hours
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. Synchronization is important to prevent race conditions
+2. Locks and semaphores help to control access to shared resources
+3. Multi-threading requires careful design to avoid errors
 
 **Most challenging aspect**: 
-
+Understanding where to place locks correctly in synchronization.
 **What I'm most proud of**: 
-
+coding synchronization without errors.
 ---
 
 **End of Documentation**
