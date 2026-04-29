@@ -213,18 +213,18 @@ Ensures that only one thread executes in the CPU at a time.
 **What I tested**: Running program multiple times to verify consistent results
 
 **Testing procedure**: 
-```bash
-# Commands used (run the program at least 5 times)
+Executed the program at least 5 times with the same student ID and compared outputs such as context switches, completed processes, and waiting time.
 ```
 
 **Results**: 
-(Show that running multiple times produces consistent, correct results)
+The results were consistent across multiple runs.
 
 **Why synchronization is necessary**: 
-(Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+Without synchronization, race conditions could occur in shared resources such as contextSwitchCount, completedProcessCount, totalWaitingTime, and executionLog. 
+This could lead to incorrect output.
 
 **Conclusion**: 
-
+Synchronization ensured data consistency and correct execution results across multiple runs.
 ---
 
 ### Test 2: Exception Testing
