@@ -267,7 +267,7 @@ The synchronization works correctly in different situations and keeps the progra
 
 ### What I learned about synchronization:
 
-[6-8 sentences about key concepts, challenges, insights]
+I learned that synchronization is important when multiple threads share the same data. Without synchronization, race conditions can occur and cause incorrect results. I understood how locks like ReentrantLock protect critical sections by allowing only one thread at a time. I also learned how semaphores control access to limited resources like CPU. One challenge I faced was understanding where to place locks correctly. I also learned that using too many locks can make the code more complex.
 
 ---
 
@@ -276,14 +276,14 @@ The synchronization works correctly in different situations and keeps the progra
 Give TWO examples where synchronization is critical:
 
 **Example 1**: 
-
+Bank systems, where multiple users access and update the same account balance at the same time.
 **Example 2**: 
-
+Online booking systems (like flight or hotel reservations), where multiple users try to book the same seat or room at the same time.
 ---
 
 ### How I would explain synchronization to others:
 
-[Explain to someone who just finished Assignment 1 - use simple terms and analogies]
+Synchronization is like organizing people who want to use the same resource. Imagine many people trying to use one bathroom. Without rules, it will be messy and unfair. Synchronization acts like a lock on the door, allowing only one person at a time. This prevents problems and keeps everything working correctly.
 
 ---
 
