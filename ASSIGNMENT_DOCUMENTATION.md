@@ -115,7 +115,7 @@ There are two race conditions. The first one occurs in contextSwitchCount. Some 
 
 **Your Answer**:
 
-[Your answer here - explain your implementation choices]
+Lock is used for mutual exclusion to protect shared resources like counters and logs. It ensures only one thread can access a critical section at a time. Semaphore controls access based on permits. I used ReentrantLock for protecting shared variables and Semaphore to control CPU access.
 
 ---
 
