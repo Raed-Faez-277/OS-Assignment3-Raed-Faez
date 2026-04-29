@@ -167,18 +167,22 @@ Each counter is protected using its own lock to ensure thread-safe updates. This
 ### Critical Section #2: Execution Log
 
 **What resource**: 
-
+executionLog (ArrayList)
 **Why it needs protection**: 
-
+it could cause race conditions.
 **Synchronization mechanism used**: 
-
+ReentrantLock (logLock)
 **Code snippet**:
 ```java
-// Paste your implementation here
-```
+logLock.lock();
+try {
+    executionLog.add(message);
+} finally {
+    logLock.unlock();
+}
 
 **Justification**: 
-
+The log is protected using a dedicated lock
 ---
 
 ### Critical Section #3: CPU Semaphore
