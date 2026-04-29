@@ -31,17 +31,17 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - [28 April, 2026 , 9:40 PM]
 **What I implemented**: 
-
+Cloned the GitHub repository and explored the code.
 **Challenges encountered**: 
-
+Understanding the scheduler and how processes are managed using threads.
 **How I solved it**: 
-
+Reviewed README file. Used YouTube as a guide and used the codes provided in slides
 **Testing approach**: 
-
+Ran the original code
 **Time spent**: 
-
+45 minutes
 ---
 
 ### Entry 2 - [Date, Time]
