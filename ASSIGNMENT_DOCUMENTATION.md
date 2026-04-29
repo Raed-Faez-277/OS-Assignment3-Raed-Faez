@@ -146,18 +146,22 @@ I used fine-grained locking by separating locks for different shared counters. S
 ### Critical Section #1: Counter Variables
 
 **Which variables**: 
-
+contextSwitchCount
+completedProcessCount
+totalWaitingTime
 **Why they need protection**: 
-
+Without synchronization, concurrent updates can cause race conditions
 **Synchronization mechanism used**: 
-
+ReentrantLock (multiple locks - fine-grained locking)
 **Code snippet**:
-```java
-// Paste your implementation here
-```
-
-**Justification**: 
-
+contextSwitchLock.lock();
+try {
+    contextSwitchCount++;
+} finally {
+    contextSwitchLock.unlock();
+}
+**Justification**:
+Each counter is protected using its own lock to ensure thread-safe updates. This prevents race conditions.
 ---
 
 ### Critical Section #2: Execution Log
