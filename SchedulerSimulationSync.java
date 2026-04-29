@@ -53,7 +53,7 @@ class SharedResources {
         } finally {
             contextSwitchLock.unlock();
         }
-        contextSwitchCount++;
+        
     }
     
     // Method to increment completed process counter
@@ -64,7 +64,7 @@ class SharedResources {
         } finally {
             completedProcessLock.unlock();
         }
-        completedProcessCount++;
+        
     }
     
     // Method to add waiting time
@@ -75,7 +75,7 @@ class SharedResources {
         } finally {
             waitingTimeLock.unlock();
         }
-        totalWaitingTime += time;
+        
     }
     
     // Method to log execution
@@ -86,7 +86,7 @@ class SharedResources {
         } finally {
             logLock.unlock();
         }
-        executionLog.add(message);
+       
     }
 }
 
