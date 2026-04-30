@@ -1,8 +1,8 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
-**Date Submitted**: [Submission Date]
+**Student Name**: [Raed Faez Al-Dawsari]  
+**Student ID**: [445050283]  
+**Date Submitted**: [29 April, 2026]
 
 ---
 
@@ -83,7 +83,7 @@ checked answers with the actual code behavior to ensure explanations matched imp
 1.5 hour
 ---
 
-### Entry 5 - [Date, Time]
+### Entry 5 - [30 April, 2026 , 12:00 PM]
 **What I implemented**: 
 Final review of the code, recorded the video demonstration, and completed the assignment submission.
 **Challenges encountered**: 
