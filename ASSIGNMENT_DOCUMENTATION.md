@@ -85,15 +85,15 @@ checked answers with the actual code behavior to ensure explanations matched imp
 
 ### Entry 5 - [Date, Time]
 **What I implemented**: 
-
+Final review of the code, recorded the video demonstration, and completed the assignment submission.
 **Challenges encountered**: 
-
+Ensuring full understanding of synchronization concepts and explaining them clearly in the video.
 **How I solved it**: 
-
+Reviewed the code multiple times, read related materials, and used YouTube tutorials to better understand locks and semaphores
 **Testing approach**: 
-
+Ran the program several times to confirm consistent and correct results before recording the video.
 **Time spent**: 
-
+1 hour
 ---
 
 ## Part 2: Technical Questions (1 mark)
